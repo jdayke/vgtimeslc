@@ -1,0 +1,23 @@
+# Медиа не храним в git
+*.mp4
+*.mov
+*.webm
+*.mkv
+*.wav
+*.mp3
+*.m4a
+# Шрифты — лицензии
+*.ttf
+*.otf
+# CapCut: ключи, кэши, бэкапы
+crypto_key_store.dat*
+*.bak
+*.tmp
+draft_cover.jpg
+Resources/
+# Раннер: служебные файлы
+_runner_status.txt
+_runner_error.txt
+_cmd_started.txt
+_kill
+*.log

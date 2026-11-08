@@ -1,0 +1,4 @@
+# Одна ссылка на строку. Строки с # пропускаются.
+# Чтобы скачать только звук (трек), добавьте в конец ссылки #audio
+https://www.instagram.com/reels/DfFpLR6MsZl/
+https://www.youtube.com/watch?v=QNfyDI_SOD0#audio
