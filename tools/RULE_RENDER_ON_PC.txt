@@ -1,0 +1,9 @@
+﻿RULE No.0 - RENDER ONLY ON THIS PC, NEVER IN THE CLOUD (13.11.2026, permanent)
+
+Everything that can run on this PC (RTX 4090, NVENC, runner Tools\jobs) runs HERE:
+- cutting/baking shots, slow motion (minterpolate), stretching for RU voice,
+  title overlays, face-tracked framing, previews, audio mixing.
+- Cloud only for light work: speech recognition, analysis, CapCut JSON, small graphics.
+Before any render ask: can this run on the PC? If yes - PC only. No exceptions.
+
+ПРАВИЛО №0 - РЕНДЕР ТОЛЬКО НА ЭТОМ ПК, НИКОГДА В ОБЛАКЕ. НАВСЕГДА.

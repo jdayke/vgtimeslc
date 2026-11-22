@@ -11,13 +11,19 @@ $status = Join-Path $jobs '_runner_status.txt'
 $kill   = Join-Path $jobs '_kill'
 $limit  = 1200
 New-Item -ItemType Directory -Force -Path $jobs, $done | Out-Null
+# Single instance per project folder (autostart + manual double-click must not run two runners)
+$mxName = 'Local\ClaudeRunner_' + (($root -replace '[^A-Za-z0-9]', '_'))
+$script:mx = New-Object System.Threading.Mutex($false, $mxName)
+$owned = $false
+try { $owned = $script:mx.WaitOne(0) } catch [System.Threading.AbandonedMutexException] { $owned = $true }
+if (-not $owned) { Write-Host 'Runner is already running for this project - closing.' -ForegroundColor Yellow; Start-Sleep -Seconds 3; exit 0 }
 $env:Path = 'C:\ffmpeg\bin;' + [Environment]::GetEnvironmentVariable('Path','Machine') + ';' + [Environment]::GetEnvironmentVariable('Path','User')
 $Host.UI.RawUI.WindowTitle = 'Claude runner v2 - ' + $root
 Write-Host ('Runner v2 started. Project folder: ' + $root) -ForegroundColor Green
 if (Test-Path $kill) { Remove-Item $kill -Force }
 
 while ($true) {
-    ('alive v2 ' + (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')) | Set-Content -Encoding UTF8 $status
+    try { ('alive v2 ' + (Get-Date -Format 'yyyy-MM-dd HH:mm:ss')) | Set-Content -Encoding UTF8 $status -ErrorAction Stop } catch { [Console]::Error.WriteLine((Get-Date -Format 'HH:mm:ss') + ' status write failed: ' + $_) }
     $next = Get-ChildItem $jobs -File | Where-Object { $_.Extension -eq '.ps1' -or $_.Extension -eq '.py' } | Sort-Object Name | Select-Object -First 1
     if (-not $next) { if (Test-Path $kill) { Remove-Item $kill -Force }; Start-Sleep -Seconds 2; continue }
 

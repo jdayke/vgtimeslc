@@ -1,0 +1,16 @@
+RULE No.1 - NO STRAY FRAMES AT CUTS. NEVER.
+(user rule, 10.11.2026; repeated 13.11.2026 after GTA6 Regions v3 failed it)
+
+Not a single frame from a neighbouring scene may appear at any cut,
+in any short, any version (LC, VGT, LC RU), shots and cards alike.
+
+How (cut_guard v2, Tools\cut_guard.py):
+1. Never pick window times from contact sheets. Sheets only show WHAT is there;
+   the times come from: python Tools\cut_guard.py cuts <video>
+2. Every video window: start >= cut + 0.08 s, end (+2 spare frames) <= next cut - 0.12 s.
+   The bake script imports cut_guard and calls assert_window() for every part -
+   the bake STOPS on a violation. No exceptions, no "almost fits".
+3. WARN (soft flags) inside a window = look at the frame pair by eye before baking.
+4. After baking: python Tools\cut_guard.py baked <all mp4> (declare intended joins).
+5. Report "cut_guard: N windows, FAIL 0" to the user with every delivery.
+6. Same when reusing the user's edited draft.
