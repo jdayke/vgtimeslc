@@ -45,3 +45,5 @@
 - Новые решения по стилю записываем в `knowledge/` и коммитим, чтобы они не терялись между чатами.
 
 [Комплект для коллег в ChatGPT](chatgpt/README.md)
+
+[Генератор хук-титров и аутро GTA 6](skills/vgt-gta-titles/SKILL.md) · [Референсы и тайминги](skills/vgt-gta-titles/references/style.md)
