@@ -1,0 +1,4 @@
+interface:
+  display_name: "Репост"
+  short_description: "Готовый игровой шортс в стиле репоста"
+  default_prompt: "Use $repost to turn this social post into a finished vertical gaming repost Short."
